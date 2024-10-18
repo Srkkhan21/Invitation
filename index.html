@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDF8fHdpc2UlMjBjdWx0dXJlJTIwY291cGxlfGVufDB8fHx8MTYwNzUxNjE5NDA5OA&ixlib=rb-1.2.1&q=80&w=1080') no-repeat center center fixed; 
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+        }
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 48px;
+            color: #e91e63;
+            margin: 0;
+        }
+        h2 {
+            font-size: 28px;
+            color: #555;
+        }
+        p {
+            font-size: 18px;
+            color: #777;
+        }
+        .details {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #333;
+        }
+        .rsvp {
+            margin-top: 30px;
+            font-weight: bold;
+            color: #e91e63;
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 16px;
+            color: #555;
+        }
+        .button {
+            background-color: #e91e63;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .response {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>You're Invited!</h1>
+    <h2>Shahrukh & Suhana</h2>
+    <p>Join us in celebrating our love</p>
+    <div class="details">
+        <p>Date: 15th December 2024</p>
+        <p>Time: 5:00 PM</p>
+        <p>Venue: The Grand Hall, Aligarh</p>
+    </div>
+    <p class="rsvp">RSVP:</p>
+    <input type="text" id="guestName" placeholder="Your Name" />
+    <select id="attendance">
+        <option value="">Will you attend?</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <button class="button" onclick="sendRSVP()">Submit</button>
+    <p id="responseMessage" class="response"></p>
+    
+    <div class="footer">
+        <p>We look forward to celebrating with you!</p>
+        <button class="button" onclick="shareInvitation()">Share on WhatsApp</button>
+    </div>
+</div>
+
+<script>
+    function sendRSVP() {
+        const name = document.getElementById("guestName").value;
+        const attendance = document.getElementById("attendance").value;
+        let message = "";
+        
+        if (attendance === "yes") {
+            message = `Thank you, ${name}! We're excited to see you!`;
+        } else if (attendance === "no") {
+            message = `We're sorry to hear that, ${name}. You'll be missed!`;
+        } else {
+            message = `Please select an attendance option.`;
+        }
+
+        document.getElementById("responseMessage").innerText = message;
+    }
+
+    function shareInvitation() {
+        const message = `You're invited to the wedding of Shahrukh & Suhana!\nDate: 15th December 2024\nTime: 5:00 PM\nVenue: The Grand Hall, Aligarh.\nJoin us in celebrating our love!`;
+        const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, "_blank");
+    }
+</script>
+
+</body>
+</html>
